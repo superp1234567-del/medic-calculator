@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+</boby>
+<img src="file_00000000df1871faaec2f49468dea769.png" alt="Logo" class="logo">
+<h2>🎀 คำนวณยอดขายยา  🎀</h2>
+
+<style>
+
+.logo{
+    display:block;
+    margin:0 auto;
+    width:100px;
+    height:auto;
+}
+
+body{
+    background:linear-gradient(135deg,#FFF8FB,#FFD6E7);
+    color:#7A4E63;
+    font-family:'promt',sans-serif;padding:20px;
+}
+
+h2{
+    text-align:center;
+    color:#FF6FA1;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:15px;
+    background:#FFFFFF;
+    color:#7A4E63;
+    font-size:16px;
+    box-sizing:border-box;
+    box-shadow:0 3px 10px
+rgba(255,183,213,0.4);
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.2s;
+    font-weight:blod;
+}
+
+button:hover{
+    transition:translateY(-2px);
+}
+
+.calc{
+    background:#FF8FB8;
+    color:white;
+}
+
+.copy1{
+    background:#FFB7D5;
+    color:white;
+}
+
+.copy2{
+    background:#F9A8D4;
+    color:white;
+}
+
+.box{
+    margin-top:20px;
+    background:#FFFFFF;
+    padding:15px;
+    border-radius:18px;
+    white-space:pre-line
+    color:#7A4E63;
+    box-shadow:0 5px 15px
+rgba(255,183,213,0.4);
+}
+
+</style>
+</head>
+
+<body>
+
+<input type="text" id="name" placeholder="ชื่อ">
+
+<input type="number" id="red" placeholder="จำนวนยาแดง">
+<input type="number" id="redOrder" placeholder="จำนวนออเดอร์ยาแดง">
+
+<input type="number" id="blue" placeholder="จำนวนยาฟ้า">
+<input type="number" id="blueOrder" placeholder="จำนวนออเดอร์ยาฟ้า">
+
+<button class="calc" onclick="calculate()">🩷
+คำนวณ
+</button>
+
+<button class="copy1" onclick="copyRound1()">📋คัดลอกอันแรก
+</button>
+
+<button class="copy2" onclick="copyRound2()">📋คัดลอกอันสอง
+</button>
+
+<div class="box" id="round1"></div>
+<div class="box" id="round2"></div>
+
+<script>
+
+let text1 = "";
+let text2 = "";
+
+function calculate(){
+
+    let name = document.getElementById("name").value;
+
+    let red = Number(document.getElementById("red").value);
+    let redOrder = Number(document.getElementById("redOrder").value);
+
+    let blue = Number(document.getElementById("blue").value);
+    let blueOrder = Number(document.getElementById("blueOrder").value);
+
+    // คำนวณเงิน
+    let totalMoney = (red * 1300) + (blue * 2000);
+
+    // คำนวณดอก
+    let redFlower = red * 5;
+    let blueFlower = blue * 5;
+
+    // ดอกขาว = แดง + ฟ้า
+    let whiteFlower = redFlower + blueFlower;
+
+    // ดอกแดง = ฟ้าอย่างเดียว
+    let redOnlyFlower = blueFlower;
+
+    // รอบสอง
+    let whiteMoney = whiteFlower * 50;
+    let redMoney = redOnlyFlower * 50;
+
+    let totalFlowerMoney = whiteMoney + redMoney;
+
+    // วันที่
+    let today = new Date();
+
+    let date =
+        today.getDate() + "/" +
+        (today.getMonth()+1) + "/" +
+        today.getFullYear();
+
+    // รอบแรก
+    text1 =
+
+`(${date})
+• ขายยาแดง : ${red} (${redOrder} ออเดอร์)
+• ขายยาฟ้า : ${blue} (${blueOrder} ออเดอร์)
+• จำนวนเงิน : ${totalMoney.toLocaleString()}
+• จำนวนดอกที่จะเบิก :ดอกขาว ${whiteFlower.toLocaleString()} ดอกแดง ${redOnlyFlower.toLocaleString()}
+หมายเหตุ : (ฝากธนาคารแล้วยังไม่ได้เบิกค่าดอก)
+<@&1124221587936256040>`;
+
+    // รอบสอง
+    text2 =
+
+`ชื่อ : ${name}
+ดอกที่เบิกกี่ดอก :ดอกขาว ${whiteFlower.toLocaleString()} ดอกแดง ${redOnlyFlower}
+รวมเป็นเงิน :ดอกขาว ${whiteFlower.toLocaleString()} x 50 = ${whiteMoney.toLocaleString()} ดอกแดง ${redOnlyFlower.toLocaleString()} x 50 = ${redMoney.toLocaleString()}
+รวม ${totalFlowerMoney.toLocaleString()}
+วัน / เดือน / ปี : ${date}
+<@&1124221587936256040>`;
+
+    document.getElementById("round1").innerText = text1;
+    document.getElementById("round2").innerText = text2;
+
+}
+
+function copyRound1(){
+
+    navigator.clipboard.writeText(text1);
+
+    alert("คัดลอกรอบแรกแล้ว");
+
+}
+
+function copyRound2(){
+
+    navigator.clipboard.writeText(text2);
+
+    alert("คัดลอกรอบสอง:แล้ว");
+
+}
+
+</script>
+
+</body>
+</html>
